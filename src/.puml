@@ -1,0 +1,40 @@
+@startuml
+class TTTFrame {
+  - board: TTTBoard
+  - game: TTTGame
+  + TTTFrame()
+  + main()
+}
+
+class TTTBoard {
+  - tiles: TTTTileButton[][]
+  - game: TTTGame
+  + TTTBoard(game: TTTGame)
+  + updateBoard()
+}
+
+class TTTTileButton {
+  - row: int
+  - col: int
+  - game: TTTGame
+  + TTTTileButton(row, col, game)
+  + setSymbol(symbol: char)
+  + reset()
+}
+
+class TTTGame {
+  - board: char[][]
+  - currentPlayer: char
+  - gameOver: boolean
+  + TTTGame()
+  + makeMove(row, col, button)
+  + resetGame()
+  - checkWin(row, col)
+  - isBoardFull()
+}
+
+TTTFrame --> TTTBoard
+TTTFrame --> TTTGame
+TTTBoard --> TTTTileButton
+TTTTileButton --> TTTGame
+@enduml
